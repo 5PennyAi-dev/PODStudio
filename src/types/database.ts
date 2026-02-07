@@ -62,6 +62,7 @@ export interface Database {
           id: string
           title: string
           slogan: string | null
+          description: string | null
           theme_id: string | null
           niche_id: string | null
           sub_niche_id: string | null
@@ -71,6 +72,7 @@ export interface Database {
           id?: string
           title: string
           slogan?: string | null
+          description?: string | null
           theme_id?: string | null
           niche_id?: string | null
           sub_niche_id?: string | null
@@ -80,6 +82,7 @@ export interface Database {
           id?: string
           title?: string
           slogan?: string | null
+          description?: string | null
           theme_id?: string | null
           niche_id?: string | null
           sub_niche_id?: string | null
