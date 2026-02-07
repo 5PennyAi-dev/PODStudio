@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Void Palette */
+    --void-bg: 11 15% 6%; /* #0B0E13 converted to HSL approx 218 26% 6% but user gave hex. Let's use Hex in tailwind config or HSL here. Tailwind prefers HSL with spaceless.
+       #0B0E13 -> HSL(218, 26%, 6%)
+       #15181E -> HSL(220, 18%, 10%)
+       #2A2F3A -> HSL(221, 16%, 20%)
+       #06B6D4 -> HSL(189, 94%, 43%)
+       #C084FC -> HSL(270, 95%, 75%)
+    */
+    
+    /* Using HSL values for Tailwind alpha opacity support */
+    --void-bg: 218 26% 6%;
+    --void-surface: 220 18% 10%;
+    --void-border: 221 16% 20%;
+    
+    --neon-accent: 189 94% 43%;
+    --purple-accent: 270 95% 75%;
+    
+    --text-main: 0 0% 100%;
+    --text-muted: 215 5% 65%;
+
+    /* Shadcn Mappings (keeping for compatibility but re-mapping to Void) */
+    --background: var(--void-bg);
+    --foreground: var(--text-main);
+
+    --card: var(--void-surface);
+    --card-foreground: var(--text-main);
+ 
+    --popover: var(--void-surface);
+    --popover-foreground: var(--text-main);
+ 
+    --primary: var(--neon-accent);
+    --primary-foreground: 0 0% 0%;
+ 
+    --secondary: 221 16% 20%;
+    --secondary-foreground: var(--text-main);
+ 
+    --muted: 220 18% 15%;
+    --muted-foreground: var(--text-muted);
+ 
+    --accent: var(--void-surface);
+    --accent-foreground: var(--neon-accent);
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: var(--void-border);
+    --input: var(--void-border);
+    --ring: var(--neon-accent);
+ 
+    --radius: 0.75rem; /* rounded-xl */
+  }
+ 
+  .dark {
+    /* Same as root since we are dark-first/only */
+    --background: var(--void-bg);
+    --foreground: var(--text-main);
+  }
+
+  /* Force Dark Inputs globally to prevent white-on-white issues */
+  input, textarea, select {
+    background-color: #0B0E13 !important; /* bg-void-bg */
+    color: #FFFFFF !important;
+    border-color: #2A2F3A;
+  }
+  
+  /* Fix Chrome/Edge Autofill white background */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #FFFFFF !important;
+    -webkit-box-shadow: 0 0 0px 1000px #0B0E13 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
