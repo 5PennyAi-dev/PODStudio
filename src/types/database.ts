@@ -109,6 +109,79 @@ export interface Database {
           is_primary?: boolean
         }
       }
+      seo_analyses: {
+        Row: {
+          id: string
+          design_id: string | null
+          generated_title: string | null
+          generated_description: string | null
+          total_score: number | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          design_id?: string | null
+          generated_title?: string | null
+          generated_description?: string | null
+          total_score?: number | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          design_id?: string | null
+          generated_title?: string | null
+          generated_description?: string | null
+          total_score?: number | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      seo_keywords: {
+        Row: {
+          id: string
+          analysis_id: string | null
+          keyword: string
+          avg_volume: number | null
+          competition: number | null
+          opportunity_score: number | null
+          volumes_history: number[] | null
+          is_top_tag: boolean | null
+          is_trending: boolean | null
+          is_evergreen: boolean | null
+          is_promising: boolean | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          analysis_id?: string | null
+          keyword: string
+          avg_volume?: number | null
+          competition?: number | null
+          opportunity_score?: number | null
+          volumes_history?: number[] | null
+          is_top_tag?: boolean | null
+          is_trending?: boolean | null
+          is_evergreen?: boolean | null
+          is_promising?: boolean | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          analysis_id?: string | null
+          keyword?: string
+          avg_volume?: number | null
+          competition?: number | null
+          opportunity_score?: number | null
+          volumes_history?: number[] | null
+          is_top_tag?: boolean | null
+          is_trending?: boolean | null
+          is_evergreen?: boolean | null
+          is_promising?: boolean | null
+          created_at?: string
+        }
+      }
     }
   }
 }

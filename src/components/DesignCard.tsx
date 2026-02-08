@@ -72,11 +72,11 @@ export function DesignCard({ design, onClick }: DesignCardProps) {
                 <span className="text-white truncate">{design.niches.name}</span>
               </div>
             )}
-            {(design as unknown as { sub_niches: { name: string } | null }).sub_niches && (
+            {design.sub_niches && (
               <div className="flex items-center gap-2">
                 <span className="text-void-text-muted font-mono">SOUS-NICHE:</span>
                 <span className="text-neon-accent truncate">
-                  {(design as unknown as { sub_niches: { name: string } }).sub_niches.name}
+                  {design.sub_niches.name}
                 </span>
               </div>
             )}

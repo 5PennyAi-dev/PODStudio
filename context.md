@@ -83,6 +83,8 @@ The core interface for creating and managing product "Designs" (internally refer
 - [x] Webhook integration (n8n)
 - [x] Results display with Sparklines & Indicators
 - [x] Navigation from Catalog (Loupe icon)
+- [x] **New:** Automated Content Generation (Title & Description)
+- [x] **New:** Etsy Listing Editor & Persistence
 
 ---
 
@@ -115,6 +117,35 @@ The core interface for creating and managing product "Designs" (internally refer
 │  └─ created_at                                             │
 │              │                                              │
 │              └───────────────── 1:N ────────────────────────┤
+│              │
+│              │
+│              └───────────────── 1:1 ────────────────────────┐
+│                                                             │
+│                                                             ▼
+│                                   ┌─────────────────────────────────────────┐
+│                                   │             seo_analyses                │
+│                                   ├─────────────────────────────────────────┤
+│                                   │  id (PK)                                │
+│                                   │  design_id (FK, Unique)                 │
+│                                   │  generated_title                        │
+│                                   │  generated_description                  │
+│                                   │  total_score                            │
+│                                   │  created_at                             │
+│                                   └────────────────────┬────────────────────┘
+│                                                        │
+│                                                        │ 1:N
+│                                                        ▼
+│                                   ┌─────────────────────────────────────────┐
+│                                   │             seo_keywords                │
+│                                   ├─────────────────────────────────────────┤
+│                                   │  id (PK)                                │
+│                                   │  analysis_id (FK)                       │
+│                                   │  keyword                                │
+│                                   │  avg_volume                             │
+│                                   │  competition                            │
+│                                   │  opportunity_score                      │
+│                                   │  ... (metrics)                          │
+│                                   └─────────────────────────────────────────┘
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -147,7 +178,8 @@ The core interface for creating and managing product "Designs" (internally refer
 | Main Layout | `src/components/Layout.tsx` |
 | Catalog Page | `src/pages/Catalog.tsx` |
 | Design Form | `src/components/forms/CreateDesignPanel.tsx` |
+| SEO Page | `src/pages/SeoAnalysis.tsx` |
 
 ---
 
-*Last Updated: 2026-02-07*
+*Last Updated: 2026-02-08*

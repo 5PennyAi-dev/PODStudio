@@ -21,21 +21,30 @@ export default function Catalog() {
 
   const fetchDesigns = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('designs')
-      .select(`
-        *,
-        themes (name),
-        niches (name),
-        sub_niches (name),
-        design_mockups (storage_url)
-      `)
-      .order('created_at', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('designs')
+        .select(`
+          *,
+          themes (name),
+          niches (name),
+          sub_niches (name),
+          design_mockups (storage_url)
+        `)
+        .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setDesigns(data as unknown as DesignWithRelations[]);
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        setDesigns(data as unknown as DesignWithRelations[]);
+      }
+    } catch (err) {
+      console.error('Error fetching designs:', err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
