@@ -79,7 +79,7 @@ export default function SeoAnalysis() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Webhook Response Data:', data);
+
         
         // Handle potential wrapping of data (e.g. if n8n returns { data: [...] } or just [...])
         const results = Array.isArray(data) ? data : (data.data || data.json || []);
