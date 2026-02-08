@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, PenTool, Settings } from 'lucide-react';
+import { LayoutDashboard, PenTool, Search, Settings } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +13,7 @@ export function Layout({ children }: LayoutProps) {
   const navItems = [
     { name: 'Bibliothèque', path: '/', icon: LayoutDashboard },
     { name: 'Pilotage', path: '/piloting', icon: PenTool },
+    { name: 'Analyse SEO', path: '/seo-analysis', icon: Search },
   ];
 
   return (

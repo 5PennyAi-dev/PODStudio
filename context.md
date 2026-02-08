@@ -78,6 +78,12 @@ The core interface for creating and managing product "Designs" (internally refer
 - [x] Image upload to `mockups/` bucket
 - [x] Deleting design mockups
 
+### SEO Analysis Feature
+- [x] SEO Analysis Page (`/seo-analysis/:id`)
+- [x] Webhook integration (n8n)
+- [x] Results display with Sparklines & Indicators
+- [x] Navigation from Catalog (Loupe icon)
+
 ---
 
 ## 5. Database Schema Map

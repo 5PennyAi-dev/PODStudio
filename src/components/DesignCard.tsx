@@ -1,4 +1,7 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import type { Database } from '@/types/database';
 
 type Design = Database['public']['Tables']['designs']['Row'] & {
@@ -14,7 +17,13 @@ interface DesignCardProps {
 }
 
 export function DesignCard({ design, onClick }: DesignCardProps) {
+  const navigate = useNavigate();
   const primaryMockup = design.design_mockups?.[0]?.storage_url;
+
+  const handleSeoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigate(`/seo-analysis/${design.id}`);
+  };
 
   return (
     <motion.div
@@ -22,7 +31,7 @@ export function DesignCard({ design, onClick }: DesignCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
       onClick={onClick}
-      className="group relative bg-void-surface border border-void-border rounded-xl overflow-hidden hover:border-neon-accent/50 transition-all duration-200 cursor-pointer"
+      className="group relative bg-void-surface border border-void-border rounded-xl overflow-hidden hover:border-neon-accent/50 transition-all duration-200 cursor-pointer pb-8"
     >
       {/* Accent Border (Left) */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-neon-accent" />
@@ -86,13 +95,21 @@ export function DesignCard({ design, onClick }: DesignCardProps) {
                  />
                </div>
              ))}
-             {/* Fill empty spots if less than 3 to keep layout stable? No need if flex/grid handles it. */}
           </div>
         ) : (
            <div className="mt-3 h-16 flex items-center justify-center border border-dashed border-void-border rounded bg-void-bg/50">
               <span className="text-[10px] text-void-text-muted uppercase">Aucune image</span>
            </div>
         )}
+
+        {/* SEO Action Button */}
+        <button
+          onClick={handleSeoClick}
+          className="absolute bottom-2 right-2 p-2 bg-void-bg border border-void-border rounded-lg text-void-text-muted hover:text-neon-accent hover:border-neon-accent transition-all z-10 shadow-lg"
+          title="Analyse SEO"
+        >
+          <Search size={16} />
+        </button>
       </div>
     </motion.div>
   );
